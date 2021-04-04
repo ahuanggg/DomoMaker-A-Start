@@ -1,3 +1,35 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@ahuanggg 
+IGM-RichMedia-at-RIT
+/
+DomoMaker-A-Start
+4
+0
+187
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+DomoMaker-A-Start/.gitignore
+@renardchien
+renardchien initial commit
+Latest commit 26ea8b4 on Sep 29, 2018
+ History
+ 1 contributor
+58 lines (42 sloc)  883 Bytes
+  
 # Logs
 logs
 *.log
@@ -56,3 +88,15 @@ typings/
 
 # dotenv environment variables file
 .env
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
