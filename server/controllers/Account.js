@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const Account = models.Account;
+const { Account } = models;
 
 const loginPage = (req, res) => {
 	res.render('login');
@@ -11,6 +11,7 @@ const signupPage = (req, res) => {
 };
 
 const logout = (req, res) => {
+	req.session.destroy();
 	res.redirect('/');
 };
 
@@ -29,6 +30,8 @@ const login = (request, response) => {
 		if (err || !account) {
 			return res.status(401).json({ error: 'Wrong username or password' });
 		}
+
+		req.session.account = Account.AccountModel.toAPI(account);
 
 		return res.json({ redirect: '/maker' });
 	});
@@ -61,7 +64,10 @@ const signup = (request, response) => {
 
 		const savePromise = newAccount.save();
 
-		savePromise.then(() => res.json({ redirect: '/' }));
+		savePromise.then(() => {
+			req.session.account = Account.AccountModel.toAPI(newAccount);
+			return res.json({ redirect: '/maker' });
+		});
 
 		savePromise.catch((err) => {
 			console.log(err);
@@ -76,9 +82,9 @@ const signup = (request, response) => {
 };
 
 module.exports = {
-	loginPage: loginPage,
-	login: login,
-	logout: logout,
-	signupPage: signupPage,
-	signup: signup,
+	loginPage,
+	login,
+	logout,
+	signupPage,
+	signup,
 };
