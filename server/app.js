@@ -13,16 +13,16 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const dbURL = 'mongodb+srv://ahuanggg:Andyxie130@cluster0.styc6.mongodb.net/DomoMaker?authSource=admin&replicaSet=atlas-143hk9-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
 
 const mongooseOptions = {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 };
 
 mongoose.connect(dbURL, mongooseOptions, (err) => {
-	if (err) {
-		console.log('Could not connect to database');
-		throw err;
-	}
+  if (err) {
+    console.log('Could not connect to database');
+    throw err;
+  }
 });
 
 const router = require('./router.js');
@@ -33,18 +33,18 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
-	session({
-		key: 'sessionid',
-		secret: 'Domo Arigato',
-		resave: true,
-		saveUninitialized: true,
-	})
+  session({
+    key: 'sessionid',
+    secret: 'Domo Arigato',
+    resave: true,
+    saveUninitialized: true,
+  }),
 );
 app.engine(
-	'handlebars',
-	expressHandlebars({
-		defaultLayout: 'main',
-	})
+  'handlebars',
+  expressHandlebars({
+    defaultLayout: 'main',
+  }),
 );
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
@@ -54,8 +54,8 @@ app.use(cookieParser());
 router(app);
 
 app.listen(port, (err) => {
-	if (err) {
-		throw err;
-	}
-	console.log(`Listening on port ${port}`);
+  if (err) {
+    throw err;
+  }
+  console.log(`Listening on port ${port}`);
 });
