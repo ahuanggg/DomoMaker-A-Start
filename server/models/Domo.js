@@ -39,7 +39,7 @@ DomoSchema.statics.toAPI = (doc) => ({
 	age: doc.age,
 });
 
-DomoSchema.statics.findByOwner = (pwnerID, callback) => {
+DomoSchema.statics.findByOwner = (ownerID, callback) => {
 	const search = {
 		owner: convertID(ownerID),
 	};
