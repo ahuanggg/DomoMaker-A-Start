@@ -6,7 +6,7 @@ var handleDomo = function handleDomo(e) {
     window: 'hide'
   }, 350);
 
-  if ($('#domoName').val() == '' || $('#domoAge').val() == '') {
+  if ($('#domoName').val() == '' || $('#domoAge').val() == '' || $('#domoSize').val() == '') {
     handleError('RAWR! All fields are required');
     return false;
   }
@@ -39,7 +39,26 @@ var DomoForm = function DomoForm(props) {
       type: "text",
       name: "age",
       placeholder: "Domo Age"
-    }), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "size"
+    }, "Size: "), /*#__PURE__*/React.createElement("input", {
+      id: "domoSize",
+      type: "text",
+      name: "size",
+      placeholder: "Domo Size"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "type"
+    }, "Type: "), /*#__PURE__*/React.createElement("select", {
+      id: "domoSize",
+      type: "text",
+      name: "type"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "domo"
+    }, "Domo"), /*#__PURE__*/React.createElement("option", {
+      value: "dog"
+    }, "Dog"), /*#__PURE__*/React.createElement("option", {
+      value: "cat"
+    }, "Cat")), /*#__PURE__*/React.createElement("input", {
       type: "hidden",
       name: "_csrf",
       value: props.csrf
@@ -62,19 +81,55 @@ var DomoList = function DomoList(props) {
   }
 
   var domoNodes = props.domos.map(function (domo) {
-    return (/*#__PURE__*/React.createElement("div", {
-        key: domo._id,
-        className: "domo"
-      }, /*#__PURE__*/React.createElement("img", {
-        src: "/assets/img/domoface.jpeg",
-        alt: "domoface",
-        className: "domoFace"
-      }), /*#__PURE__*/React.createElement("h3", {
-        className: "domoName"
-      }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
-        className: "domoAge"
-      }, " Age: ", domo.age, " "))
-    );
+    if (domo.type == 'dog') {
+      return (/*#__PURE__*/React.createElement("div", {
+          key: domo._id,
+          className: "domo"
+        }, /*#__PURE__*/React.createElement("img", {
+          src: "/assets/img/dog.png",
+          alt: "domoface",
+          className: "domoFace"
+        }), /*#__PURE__*/React.createElement("h3", {
+          className: "domoName"
+        }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoAge"
+        }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoSize"
+        }, " Size: ", domo.size, " "))
+      );
+    } else if (domo.type == 'cat') {
+      return (/*#__PURE__*/React.createElement("div", {
+          key: domo._id,
+          className: "domo"
+        }, /*#__PURE__*/React.createElement("img", {
+          src: "/assets/img/cat.png",
+          alt: "domoface",
+          className: "domoFace"
+        }), /*#__PURE__*/React.createElement("h3", {
+          className: "domoName"
+        }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoAge"
+        }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoSize"
+        }, " Size: ", domo.size, " "))
+      );
+    } else {
+      return (/*#__PURE__*/React.createElement("div", {
+          key: domo._id,
+          className: "domo"
+        }, /*#__PURE__*/React.createElement("img", {
+          src: "/assets/img/domoface.jpeg",
+          alt: "domoface",
+          className: "domoFace"
+        }), /*#__PURE__*/React.createElement("h3", {
+          className: "domoName"
+        }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoAge"
+        }, " Age: ", domo.age, " "), /*#__PURE__*/React.createElement("h4", {
+          className: "domoSize"
+        }, " Size: ", domo.size, " "))
+      );
+    }
   });
   return (/*#__PURE__*/React.createElement("div", {
       className: "domoList"
